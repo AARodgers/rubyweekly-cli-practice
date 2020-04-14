@@ -195,4 +195,16 @@ SCRAPING:
  @issue_date="Issue 286 — February 25, 2016">
 [3] pry(main)> n.articles.first.url
 => "https://rubyweekly.com/link/27501/web"
-[4] pry(main)> 
+[4] pry(main)>
+
+ rubyweekly-cli git:(master) ✗ ruby ./bin/rubyweekly
+Welcome to RubyWeekly!!!
+1. Support Plans for Ruby 2.0.0 and Ruby 2.1
+2. Speeding up Sprockets
+3. RailsConf 2016 - May 4-6, Kansas Cityprogram
+4. Ruby Magic. A new email series that lets you in on Ruby's secrets.
+5. Is 2.3 Faster? The Performance of Immutable String Literals
+6. Building A Simple Websockets Server From Scratch in Ruby
+7. A Brief Tour of Nokogiri DecoratorsLoofah
+8. WhoUsesThisGem: Which Top Projects Use Which Gems
+9. To Gem, or Not to Gem

@@ -1,0 +1,6 @@
+#!/urs/bin/env ruby
+require_relative '../config/environment.rb'
+
+RubyWeeklyController.new.call
+
+
