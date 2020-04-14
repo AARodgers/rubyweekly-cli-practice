@@ -1,7 +1,7 @@
 - require_all is a gem and you have to put it in the gem file
 
 - want to be able to have:
-n_286 = RubyWeeklyScrapper.new("https://rubyweekly.com/issues/496").scrape
+n_286 = RubyWeeklyScrapper.new(286).scrape
 n_286.articles.first.title => should get back first title of article
 Steps:
 1. Need to make RubyWeeklyScrapper class
@@ -108,3 +108,53 @@ NameError: uninitialized constant Number
 Did you mean?  Numeric
 from (pry):4:in `__pry__'
 [5] pry(main)>
+
+ rubyweekly-cli git:(master) ✗ rake console
+[1] pry(main)> s = RubyWeeklyScrapper.new(286)
+=> #<RubyWeeklyScrapper:0x00007fbca8ad84e8
+ @doc=
+  #(Document:0x3fde545801ac {
+    name = "document",
+    children = [
+      #(DTD:0x3fde54588d98 { name = "html" }),
+      #(Element:0x3fde5458dac8 {
+        name = "html",
+        attributes = [ #(Attr:0x3fde5458cf4c { name = "lang", value = "en" })],
+        children = [
+          #(Text "\n"),
+          #(Element:0x3fde54598270 {
+            name = "head",
+            children = [
+              #(Text "\n  "),
+[2] pry(main)> s.scrape_articles
+
+From: /Users/amandarodgers/Flatiron/mod1/playground/rubyweekly-cli/lib/rubyweekly_scrapper.rb:27 RubyWeeklyScrapper#scrape_articles:
+
+    20: def scrape_articles
+    21:     # is going to break the convention of only knowing about newsletters and let it create articles
+    22:     @doc.search("td[align='left'] table.gowide")[2..-1].each do |article_table|
+    23:         #instantiate the article
+    24:         #scrape the data
+    25:         #add the article to the newsletter
+    26:         a = Article.new
+ => 27:         binding.pry
+    28:     end
+    29: end
+
+[1] pry(#<RubyWeeklyScrapper>)> article_table.text
+=> "\n\nRuby News\n\nSupport Plans for Ruby 2.0.0 and Ruby 2.1\n\nCore team support for Ruby 2.0.0 ended this week with no bug and security fixes forthcoming. Ruby 2.1’s maintenance phase will end with 2.1.9 in March. Everyone is recommended to upgrade to 2.2 or 2.3 soon.\n\n\n"
+[2] pry(#<RubyWeeklyScrapper>)>
+
+SCRAPING:
+[1] pry(#<RubyWeeklyScrapper>)> article_table.text
+=> "\n\nRuby News\n\nSupport Plans for Ruby 2.0.0 and Ruby 2.1\n\nCore team support for Ruby 2.0.0 ended this week with no bug and security fixes forthcoming. Ruby 2.1’s maintenance phase will end with 2.1.9 in March. Everyone is recommended to upgrade to 2.2 or 2.3 soon.\n\n\n"
+[2] pry(#<RubyWeeklyScrapper>)> article_table.search("div:first").text
+=> "\nRuby News\n"
+[3] pry(#<RubyWeeklyScrapper>)> article_table.search("a:first").text
+=> "Support Plans for Ruby 2.0.0 and Ruby 2.1"
+[4] pry(#<RubyWeeklyScrapper>)> article_table.search("a:first").attr("href")
+=> #(Attr:0x3fde5446b0b4 { name = "href", value = "https://rubyweekly.com/link/27501/web" })
+[5] pry(#<RubyWeeklyScrapper>)>
+[5] pry(#<RubyWeeklyScrapper>)> article_table.search("div:last").text
+=> "\nCore team support for Ruby 2.0.0 ended this week with no bug and security fixes forthcoming. Ruby 2.1’s maintenance phase will end with 2.1.9 in March. Everyone is recommended to upgrade to 2.2 or 2.3 soon.\n"
+[6] pry(#<RubyWeeklyScrapper>)> 

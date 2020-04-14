@@ -1,7 +1,6 @@
 class InvalidType < StandardError; end
 
 class Newsletter
-
     attr_accessor :issue_number, :issue_date
     # attr_reader :articles
 
@@ -19,9 +18,9 @@ class Newsletter
     def add_article(article)
         if !article.is_a?(Article) && !article.title.empty?
         # adds another condition so that article title attribute is not empty
-            raise InvalidType, "must be an article"
+            raise InvalidType, "must be an Article"
         else
-            @@articles << article
+            @articles << article
         end
     end
 
